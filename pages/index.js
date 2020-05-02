@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Calendar from '../components/calendar'
-import EventCard from '../components/eventCard'
+import Head from "next/head";
+import Calendar from "../components/calendar";
+import EventCard from "../components/eventCard";
 
 export default function Home() {
   return (
@@ -8,12 +8,26 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/event.css"></link>
       </Head>
 
       <main>
-
         <Calendar></Calendar>
-        <EventCard startTime="10" endTime="11" eventName="Hello World"></EventCard>
+        <EventCard
+          startTime="10"
+          endTime="11"
+          eventName="Hello World"
+        ></EventCard>
+        <EventCard
+          startTime="11"
+          endTime="12"
+          eventName="Artificial Intelligence"
+        ></EventCard>
+        <EventCard
+          startTime="14"
+          endTime="15"
+          eventName="CG Pracs"
+        ></EventCard>
       </main>
 
 
@@ -159,5 +173,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
