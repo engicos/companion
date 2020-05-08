@@ -62,12 +62,15 @@ function toggle() {
 }
 
 const Calendar = () => {
+  let rowIdx = 0;
+  let cellIdx = 0;
   return (
     <React.Fragment>
       <div className="calendar">
         <div id="month">
-          <button onClick={toggle}>TAP</button>{" "}
-          {today.getMonth() + " " + today.getFullYear()}{" "}
+          <button onClick={toggle}>
+            {today.toDateString()}{" "}
+          </button>
         </div>
 
         <div id="slider">
@@ -86,7 +89,7 @@ const Calendar = () => {
           </table>
         </div>
 
-        <div id="calendar">
+        <div id="calendar" hidden>
           <table>
             <thead>
               <tr>
@@ -95,6 +98,7 @@ const Calendar = () => {
                     data-today-weekday={
                       weekDays[new Date().getDay()] == day ? "true" : ""
                     }
+                    key={day}
                   >
                     {day.slice(0, 1)}
                   </th>
@@ -103,12 +107,13 @@ const Calendar = () => {
             </thead>
             <tbody>
               {getCalendar().map((row) => (
-                <tr>
+                <tr key={`row__${rowIdx++}`}>
                   {row.map((cell) => (
                     <td
                       data-today-date={
                         new Date().getDate() == cell ? "true" : ""
                       }
+                      key={`col__${cellIdx++}`}
                     >
                       {cell}
                     </td>
@@ -161,11 +166,12 @@ const Calendar = () => {
         }
 
         #slider table tbody td {
+          font-size: 2rem;
           padding: 5px;
           border-radius: 50%;
           user-select: none;
-          width: 30px;
-          height: 30px;
+          width: 3rem;
+          height: 3rem;
           margin: 5px;
           background-color: #303030;
         }
@@ -205,6 +211,6 @@ const Calendar = () => {
       `}</style>
     </React.Fragment>
   );
-};
+}
 
 export default Calendar;
