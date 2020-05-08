@@ -14,8 +14,8 @@ const EventCard = ({event}) => {
       <style jsx>{`
         .eventcard {
             display: grid;
-            grid-template:  [null] "time duration" 1em [duration]
-                            [time] "time topic"    3em [event title]
+            grid-template:  [null] "time duration" 1em  [duration]
+                            [time] "time topic"    auto [event title]
                                 /   3em  auto;
             border: 1px solid;
             border-radius: 10px;
@@ -41,7 +41,7 @@ const EventCard = ({event}) => {
             grid-area: topic;
             text-align: left;
             font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            padding: 1em;
+            padding: 1em 0.5em 1em 1em;
         }
       `}</style>
     </div>
