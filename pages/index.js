@@ -3,6 +3,7 @@ import Calendar from "../components/calendar";
 import EventCard from "../components/eventCard";
 import Query from "../components/query";
 import TODAYS_LECTURES_QUERY from "../apollo/queries/lecture/lectures";
+import moment from 'moment';
 
 export default function Home() {
   return (
@@ -16,8 +17,10 @@ export default function Home() {
       <main>
         <Calendar></Calendar>
         <div className="events">
-          <Query query={TODAYS_LECTURES_QUERY}>
+          <Query query={TODAYS_LECTURES_QUERY(moment().format("ddd"))}>
             {({data: {lectures}}) => {
+              if( lectures.length == 0 )
+                return <EventCard event={{Start:"8", End: "20", subject: {Title: "Nothing planned today"}}} key={`event__0`}/>
               return lectures.map( lecture => {
                 return <EventCard event={lecture} key={`event__${lecture.id}`}/>
               })

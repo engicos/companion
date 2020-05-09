@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-const TODAYS_LECTURES_QUERY = gql`
+const TODAYS_LECTURES_QUERY = (day) => gql`
   query Lectures {
-    lectures(where: { Weekday: "Fri" }) {
+    lectures(where: { Weekday: "${day}" }) {
 			id,
       subject {
         Title
