@@ -1,216 +1,73 @@
-let today = new Date();
-
-let monthLength = [
-  31,
-  28 + isLeapYear(today.getFullYear()),
-  31,
-  30,
-  31,
-  30,
-  31,
-  31,
-  30,
-  31,
-  30,
-  31,
-];
-
-let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-function firstDay(date, day) {
-  return (((1 - date) % 7) + 7 + weekDays.indexOf(day)) % 7;
-}
-
-function isLeapYear(year) {
-  if (year % 400 == 0) return true;
-  else if (year % 100 == 0) return false;
-  else if (year % 4 == 0) return true;
-  else return false;
-}
-
-function getCalendar() {
-  let weekDay = firstDay(today.getDate(), today.getDay());
-  let numOfDays = monthLength[today.getMonth()];
-
-  let calArray = Array();
-  calArray[0] = Array();
-
-  //fill empty slots
-  for (let i = 0; i < weekDay; i++) {
-    calArray[0][i] = " ";
-  }
-
-  let week = 0;
-  for (let i = 1; i <= numOfDays; i++) {
-    if (weekDay % 7 == 0) {
-      week++;
-      calArray[week] = Array();
-    }
-    calArray[week][weekDay++ % 7] =
-      i == today.getDate() ? i.toString() : i.toString();
-  }
-
-  return calArray;
-}
-
-function toggle() {
-  let calendar = document.getElementById("calendar");
-  let slider = document.getElementById("slider");
-
-  slider.hidden = calendar.hidden;
-  calendar.hidden = !calendar.hidden;
-}
+import moment from "moment";
 
 const Calendar = () => {
-  let rowIdx = 0;
-  let cellIdx = 0;
-  return (
-    <React.Fragment>
-      <div className="calendar">
-        <div id="month">
-          <button onClick={toggle}>
-            {today.toDateString()}{" "}
-          </button>
-        </div>
-
-        <div id="slider">
-          <table>
-            <tbody>
-              <tr>
-                <td>{Number(today.getDate()) - 2}</td>
-                <td>{Number(today.getDate()) - 1}</td>
-                <td>
-                  <b>{Number(today.getDate()) - 0}</b>
-                </td>
-                <td>{Number(today.getDate()) + 1}</td>
-                <td>{Number(today.getDate()) + 2}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div id="calendar" hidden>
-          <table>
-            <thead>
-              <tr>
-                {weekDays.map((day) => (
-                  <th
-                    data-today-weekday={
-                      weekDays[new Date().getDay()] == day ? "true" : ""
-                    }
-                    key={day}
-                  >
-                    {day.slice(0, 1)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {getCalendar().map((row) => (
-                <tr key={`row__${rowIdx++}`}>
-                  {row.map((cell) => (
-                    <td
-                      data-today-date={
-                        new Date().getDate() == cell ? "true" : ""
-                      }
-                      key={`col__${cellIdx++}`}
-                    >
-                      {cell}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .calendar {
-          min-width: 340px;
-          background: #424242;
-          color: #fff;
-          overflow: hidden;
-          border-radius: 5px;
-        }
-
-        #month {
-          background: #212121;
-          padding: 10px;
-          padding-left: 15px;
-        }
-
-        #month button {
-          outline: none;
-          user-select: none;
-          background: #303030;
-          color: #fff;
-          border: none;
-          padding: 5px 10px;
-          margin-right: 10px;
-        }
-
-        #slider table {
-          margin: 0;
-          background: #212121;
-          width: 100%;
-        }
-
-        #slider table tbody tr {
-          text-align: center;
-          display: flex;
-          width: 100%;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        #slider table tbody td {
-          font-size: 2rem;
-          padding: 5px;
-          border-radius: 50%;
-          user-select: none;
-          width: 3rem;
-          height: 3rem;
-          margin: 5px;
-          background-color: #303030;
-        }
-
-        #calendar {
-          padding: 5px;
-          text-align: center;
-        }
-
-        #calendar thead {
-          color: #aaa;
-        }
-
-        #calendar thead tr th,
-        #calendar tbody tr td {
-          height: 45px;
-          width: 45px;
-          padding: 5px;
-          border-radius: 50%;
-          user-select: none;
-        }
-
-        #calendar tbody td:hover {
-          color: #0069ff;
-          background: #303030;
-          transition: all 0.4s ease-in-out;
-        }
-
-        #calendar thead th[data-today-weekday="true"] {
-          color: #0069ff;
-        }
-
-        #calendar tbody td[data-today-date="true"] {
-          color: #212121;
-          background: #0069ff;
-        }
-      `}</style>
-    </React.Fragment>
+  let today = moment();
+  let firstWeek = moment(
+    moment(today.format("MM YYYY"), "MM YYYY", true).format("ww YYYY"),
+    "ww YYYY",
+    true
   );
-}
+
+  let lastWeek = moment(
+    today.clone().add(1, "month").date(0).format("ww YYYY"),
+    "ww YYYY",
+    true
+  );
+
+  let dayNames = new Array();
+  for (
+    var i = firstWeek.clone();
+    i.week() === firstWeek.week();
+    i.add(1, "day")
+  ) {
+    dayNames.push(i.format("ddd"));
+  }
+
+  let calGrid = new Array();
+  for (
+    var i = firstWeek.clone();
+    i.week() <= lastWeek.week();
+    i.add(1, "day")
+  ) {
+    if (calGrid[i.week()] === undefined) {
+      calGrid[i.week()] = new Array();
+    }
+    calGrid[i.week()].push({
+			date: i.format("DD"),
+			cssClass: `${i.month()==moment().month()?"curr":"adj"} ${i.isSame(today, 'day') ? "today": ""}`
+			})
+		}
+
+  return (
+    <div id="calendar">
+      <table className="grid">
+        <tr className="dayNames">
+          {dayNames.map((day) => (
+            <th key={day}>{day}</th>
+          ))}
+        </tr>
+        {calGrid.map((week, i) => (
+          <tr key={`week__${i}`}>
+            {week.map((day) => (
+              <td className={day.cssClass} key={day.date}>{day.date}</td>
+            ))}
+          </tr>
+        ))}
+      </table>
+			<style jsx>{`
+			.grid {
+				width: 100%;
+				text-align: center;
+			}
+			.adj {
+				color: #aaa;
+			}
+			.today {
+				text-decoration-line: underline;
+			}
+			`}</style>
+    </div>
+  );
+};
 
 export default Calendar;
