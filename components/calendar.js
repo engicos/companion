@@ -1,6 +1,6 @@
 import moment from "moment";
 
-const Calendar = () => {
+const Calendar = ({ dayHandler }) => {
   let today = moment();
   let firstWeek = moment(
     moment(today.format("MM YYYY"), "MM YYYY", true).format("ww YYYY"),
@@ -33,10 +33,12 @@ const Calendar = () => {
       calGrid[i.week()] = new Array();
     }
     calGrid[i.week()].push({
-			date: i.format("DD"),
-			cssClass: `${i.month()==moment().month()?"curr":"adj"} ${i.isSame(today, 'day') ? "today": ""}`
-			})
-		}
+      date: i.clone(),
+      cssClass: `${i.month() == moment().month() ? "curr" : "adj"} ${
+        i.isSame(today, "day") ? "today" : ""
+      }`,
+    });
+  }
 
   return (
     <div id="calendar">
@@ -49,23 +51,33 @@ const Calendar = () => {
         {calGrid.map((week, i) => (
           <tr key={`week__${i}`}>
             {week.map((day) => (
-              <td className={day.cssClass} key={day.date}>{day.date}</td>
+              <td
+                className={day.cssClass}
+                key={day.date.format("DD MM")}
+                onClick={()=>{dayHandler(day.date)}}
+                tabIndex="0"
+              >
+                {day.date.format("DD")}
+              </td>
             ))}
           </tr>
         ))}
       </table>
-			<style jsx>{`
-			.grid {
-				width: 100%;
-				text-align: center;
-			}
-			.adj {
-				color: #aaa;
-			}
-			.today {
-				text-decoration-line: underline;
-			}
-			`}</style>
+      <style jsx>{`
+        .grid {
+          width: 100%;
+          text-align: center;
+        }
+        .adj {
+          color: #aaa;
+        }
+        .today {
+          text-decoration-line: underline;
+        }
+        td:focus {
+          border: 1px solid #ccc;
+        }
+      `}</style>
     </div>
   );
 };
