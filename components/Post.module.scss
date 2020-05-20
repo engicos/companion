@@ -1,0 +1,78 @@
+.post {
+    min-width: 300px;
+    max-width: 360px;
+    border: 1px solid #212121;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #aaaaaa;
+    margin: 10px;
+}
+
+.postHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    p {
+        float: left;
+    }
+
+    .profileImage{
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .postOptionButton {
+        width: 40px;
+        height: min-content;
+        outline: none;
+        user-select: none;
+        border: none;
+        background: none;
+    
+        :hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.postBody {
+    padding: 10px
+}
+
+.postFooter {
+    padding: 10px;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+
+    .comments{
+        display: flex;
+        flex-wrap: wrap;
+
+        .postCommentButton {
+            width: 40px;
+            height: min-content;
+            outline: none;
+            user-select: none;
+            border: none;
+            background: none;
+        
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .postShareButton {
+        width: 40px;
+        height: min-content;
+        outline: none;
+        user-select: none;
+        border: none;
+        background: none;
+    
+        :hover {
+            cursor: pointer;
+        }
+    }
+}
