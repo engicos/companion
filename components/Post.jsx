@@ -1,48 +1,113 @@
 import React, { Component } from "react";
 import styles from "./Post.module.scss";
 import ReactMarkdown from "react-markdown";
+import Router from "next/router";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faComment,
+  faShare,
+  faEllipsisH,
+} from "@fortawesome/free-solid-svg-icons";
 
 class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: props.author,
-      content: props.content,
+      id: props.post.id,
+      author: props.post.author.username,
+      content: props.post.content,
+      attachments: [...props.post.attachments],
+      createdAt: props.post.created_at,
+      singlePost: props.singlePost === "true" ? true : false,
     };
   }
 
   render() {
-    return (
-      <div className={styles.post}>
-        <div className={styles.postHeader}>
+    const attachments = this.state.attachments.map((attachment) => {
+      if (
+        attachment.ext === ".png" ||
+        attachment.ext === ".jpg" ||
+        attachment.ext === ".jpeg"
+      )
+        return (
           <img
-            src="./profile.png"
-            alt="Profile Image"
-            className={styles.profileImage}
+            className={styles.attachmentImage}
+            key={attachment.url}
+            src={"http://localhost:1337" + attachment.url}
+            alt={attachment.name}
           />
+        );
+      else
+        return (
+          <a
+            target="_blank"
+            className={styles.attachmentLink}
+            key={attachment.url}
+            href={"http://localhost:1337" + attachment.url}
+          >
+            {attachment.name}
+          </a>
+        );
+    });
 
-          <p>{this.state.author}</p>
+    return (
+      <div
+        className={
+          this.state.singlePost === true ? styles.singlePost : styles.post
+        }
+      >
+        <div className={styles.postHeader}>
+          <div className={styles.postAuthor}>
+            <img src="./profile.png" alt="DP" className={styles.profileImage} />
 
-          <button className={styles.postOptionButton}>
-            <img src="./options.svg" alt="Options" />
-          </button>
+            <div className={styles.postAuthorTime}>
+              <p>{this.state.author}</p>
+              <p>{new Date(this.state.createdAt).toLocaleString()}</p>
+            </div>
+          </div>
+
+          <div
+            className={styles.postOption}
+            onClick={() => console.log("Options button clicked!")}
+          >
+            <FontAwesomeIcon icon={faEllipsisH} size="2x" />
+          </div>
         </div>
 
         <div className={styles.postBody}>
           <ReactMarkdown source={this.state.content} />
+
+          {attachments}
+
+          {this.state.singlePost === true ? (
+            ""
+          ) : (
+            <div
+              className={styles.viewDetails}
+              onClick={() => Router.push(`/post/${this.state.id}`)}
+            >
+              View details
+            </div>
+          )}
         </div>
 
         <div className={styles.postFooter}>
-          <div className={styles.comments}>
-            <button className={styles.postCommentButton}>
-              <img src="./comments.svg" alt="Comments" />
-            </button>
-            <p>5</p>
+          <div
+            className={styles.comments}
+            onClick={() => console.log("Comment button clicked!")}
+          >
+            <FontAwesomeIcon icon={faComment} size="lg" />
+            <p>5 Comments</p>
           </div>
 
-          <button className={styles.postShareButton}>
-            <img src="./share.svg" alt="Share" />
-          </button>
+          <div
+            className={styles.share}
+            onClick={() => console.log("Share button clicked!")}
+          >
+            <FontAwesomeIcon icon={faShare} size="lg" />
+            <p>Share</p>
+          </div>
         </div>
       </div>
     );

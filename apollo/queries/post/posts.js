@@ -8,7 +8,12 @@ const LATEST_POSTS_QUERY = () => gql`
         author {
             username
         }
-        created_at
+        created_at,
+        attachments {
+            name,
+            url,
+            ext
+        }
     }
   }
 `;

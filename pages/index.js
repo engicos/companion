@@ -12,19 +12,13 @@ export default function Home() {
           if (posts.length == 0)
             return <div>No posts found</div>
           return posts.map(post => {
-            console.log(post);
-            return <Post author={post.author.username} content={post.content} created={post.createdAt}/>
+            return <Post key={post.id} post={post}/>
           })
         }}
       </Query>
 
       <style jsx>{`
-        .container{
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+        
       `}</style>
     </div>
   )
