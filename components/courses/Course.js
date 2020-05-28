@@ -1,23 +1,22 @@
-import { useRouter } from 'next/router'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import Head from 'next/head'
 
-const course = () => {
-    const router = useRouter()
-    // course is the course ID
-    const { course } = router.query
+const Course = props => {
+    const [course, ] = useState(props)
+    console.log("Course state:", course)
 
     return (
         <Fragment>
+
             <Head>
                 <title>
-                    Course {course} | Course Name
+                    {`${course.Title} | ${course.SubjectCode}`}
                 </title>
             </Head>
 
             <div id="course-container">
                 <nav className="course-nav">
-                    <div>Course Name</div>
+                    <div>{course.Title}</div>
                     <div>
                         <input type="text" placeholder="🔍 Search.." />
                     </div>
@@ -25,12 +24,13 @@ const course = () => {
 
                 <main>
                     <header>
-                        <h1>Course Title</h1>
-                        <p>Course Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum unde veniam nulla, recusandae aliquid nostrum doloribus et odio aspernatur, doloremque officiis quos sequi similique vel quas suscipit illo! Illum, quod.</p>
+                        <h1>{course.Title}</h1>
+
+                        <p>{course.Description}</p>
                     </header>
 
                     <section>
-                        <h2>Some text?</h2>
+                        <h2>Subject Code: {course.SubjectCode}</h2>
                         <p>Instructor: Course Instructor</p>
 
                         <div className="link-grid">
@@ -98,89 +98,86 @@ const course = () => {
                 #course-container {
                     margin: 0;
                     padding: 1rem;
-                    background: #2F3437;
+                    background: #2f3437;
                     color: #eee;
-
+                  
                     .course-nav {
-                        width: 100%;
-                        display: flex;
-                        justify-content: space-between;
-
-                        input {
-                            border: none;
-                            padding: 0.5rem 1rem;
-                            border-radius: 0.25rem;
-                        }
+                      width: 100%;
+                      display: flex;
+                      justify-content: space-between;
+                  
+                      input {
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 0.25rem;
+                      }
                     }
-
+                  
                     main {
-                        width: 60%;
-                        margin: 0 auto;
-                        margin-top: 5rem;
-
-                        section {
-                            margin: 3rem 0;
-                        }
-
-                        .link-grid {
-                            display: grid;
-                            grid-template-columns: 1fr 1fr;
-                            column-gap: 2rem;
-
-                            
-                            span {
-                              padding: 0.5rem 0.25rem;
-                              user-select: none;
-
-                                &:hover {
-                                    background: #404244;
-                                    cursor: pointer;
-                                    transition: all 0.3s ease-in-out;
-                                }
-                            }
-
-                            &-icon{
-                                
-                            }
-
-                        }
-
-                        .schedule-grid{
-                            display: grid;
-                            column-gap: 5rem;
-                            grid-template-columns: repeat(5, 1fr);
-
-                            &-weekday{ 
-                                h3{
-                                    padding-bottom: 0.5rem;
-                                    border-bottom: #aaa 1px solid;
-                                }
-
-                                div {
-                                    margin-bottom: 1rem;
-                                    p {
-                                        margin: 0;
-                                        &:nth-child(1) {
-                                            color: #fff;
-                                            font-weight: bold;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        .announcement {
+                      width: 60%;
+                      margin: 0 auto;
+                      margin-top: 5rem;
+                  
+                      section {
+                        margin: 3rem 0;
+                      }
+                  
+                      .link-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        column-gap: 2rem;
+                  
+                        span {
+                          padding: 0.5rem 0.25rem;
+                          user-select: none;
+                  
+                          &:hover {
                             background: #404244;
-                            border-radius: 0.25rem;
-                            padding: 1rem 2rem;
-                            margin: 0.5rem 0;
+                            cursor: pointer;
+                            transition: all 0.3s ease-in-out;
+                          }
                         }
+                  
+                        &-icon {
+                        }
+                      }
+                  
+                      .schedule-grid {
+                        display: grid;
+                        column-gap: 5rem;
+                        grid-template-columns: repeat(5, 1fr);
+                  
+                        &-weekday {
+                          h3 {
+                            padding-bottom: 0.5rem;
+                            border-bottom: #aaa 1px solid;
+                          }
+                  
+                          div {
+                            margin-bottom: 1rem;
+                            p {
+                              margin: 0;
+                              &:nth-child(1) {
+                                color: #fff;
+                                font-weight: bold;
+                              }
+                            }
+                          }
+                        }
+                      }
+                  
+                      .announcement {
+                        background: #404244;
+                        border-radius: 0.25rem;
+                        padding: 1rem 2rem;
+                        margin: 0.5rem 0;
+                      }
                     }
-                }
+                  }
+                  
             `}</style>
         </Fragment>
     )
 }
 
-
-export default course
+export default Course
