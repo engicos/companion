@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import Query from '../../../components/query'
-import COURSE_ID_QUERY from '../../../apollo/queries/course/course'
+import SectionQuery from '../../../apollo/queries/course/Section'
 import Sections from '../../../components/courses/Sections'
 
 
@@ -14,11 +14,11 @@ const SectionsPage = () => {
         <Fragment>
 
             {/* Need to use a different query later, data not in place yets */}
-            <Query query={COURSE_ID_QUERY(courseId)}>
+            <Query query={SectionQuery(courseId)}>
                 {({ data: { courses } }) => {
                     if (courses.length == 0)
                         return <div>Course not found</div>
-                    return <Sections {...courses[0]}/>
+                    return <Sections {...courses[0]} />
                 }}
             </Query>
 

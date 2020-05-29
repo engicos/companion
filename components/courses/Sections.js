@@ -2,13 +2,13 @@ import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 import Head from 'next/head'
 import CourseNav from './CourseNav'
+import SectionsCard from './SectionsCard'
 
 const Sections = props => {
     const router = useRouter()
     // course is the course ID
     // const { courseId } = router.query
     const [course,] = useState(props)
-    // console.log("Contact state:", course)
 
     return (
         <Fragment>
@@ -19,9 +19,9 @@ const Sections = props => {
                 </title>
             </Head>
 
-            <CourseNav 
-                title={course.Title} 
-                page="🎒 Sections" 
+            <CourseNav
+                title={course.Title}
+                page="🎒 Sections"
                 courseId={course.id}
             />
 
@@ -33,22 +33,7 @@ const Sections = props => {
                     </header>
 
                     <section className="sections-grid">
-                        <div className="section-card">
-                            <h2>Section 1</h2>
-                            <p>Teaching Assistant: Swight Dchrute</p>
-                            <p>Contact: ds@scranton.dm</p>
-                            <p>Date & Time: M/W 9:00 - 11:00 AM</p>
-                            <p>Location: Computer Dept Room #3</p>
-                            <p>Section: 12345</p>
-                        </div>
-                        <div className="section-card">
-                            <h2>Section 2</h2>
-                            <p>Teaching Assistant: Swight Dchrute</p>
-                            <p>Contact: ds@scranton.dm</p>
-                            <p>Date & Time: M/W 2:00 - 4:00 PM</p>
-                            <p>Location: Computer Dept SS Lab</p>
-                            <p>Section: 12345</p>
-                        </div>
+                        {course.Instructors.map((Instructor, index) => <SectionsCard key={Instructor.username} index={index} {...Instructor} />)}
                     </section>
                 </main>
             </div>
@@ -76,13 +61,6 @@ const Sections = props => {
                             display: grid;
                             grid-template-columns: 1fr 1fr;
                             gap: 4rem;
-                            
-                            .section-card{
-                                background: #404244;
-                                padding: 0 1rem;
-                                border-radius: 0.25rem;
-                                box-shadow: 0 0.25rem 0.5rem #212121;
-                            }
                         }
                     }
                 }
