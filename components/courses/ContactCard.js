@@ -1,10 +1,11 @@
 import { Fragment } from "react"
 
 const ContactCard = props => {
+    const GRAPHQL_URL = process.env.API_URL || "http://localhost:1337";
     let ProfileImage = "https://via.placeholder.com/200";
     
     if(props.ProfileImage)
-        ProfileImage = `http://localhost:1337${props.ProfileImage.url}`
+        ProfileImage = `${GRAPHQL_URL}${props.ProfileImage.url}`
 
     return (
         <Fragment>

@@ -8,7 +8,7 @@ const Course = props => {
     // course is the course ID
     // const { courseId } = router.query
     const [course,] = useState(props)
-    console.log("Course State:", course)
+    // console.log("Course State:", course)
 
     return (
         <Fragment>
@@ -36,7 +36,7 @@ const Course = props => {
                         <h2>Subject Code: {course.SubjectCode}</h2>
                         <p>Instructor{course.Instructors && course.Instructors.length > 1 ? "s" : ""}:
                             {course.Instructors.map((Instructor, index) =>
-                            <span> {`${Instructor.FirstName} ${Instructor.LastName}`} {index < course.Instructors.length - 1 ? ", " : ""}</span>)}
+                            <span key={index}> {`${Instructor.FirstName} ${Instructor.LastName}`} {index < course.Instructors.length - 1 ? ", " : ""}</span>)}
                         </p>
 
                         <div className="link-grid">
