@@ -8,7 +8,8 @@ const COURSE_ID_QUERY = (id) => gql`
         Description,
         SubjectCode,
         Instructors {
-          username
+          FirstName,
+          LastName
         }
     }
   }

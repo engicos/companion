@@ -7,7 +7,7 @@ const Course = props => {
     const router = useRouter()
     // course is the course ID
     // const { courseId } = router.query
-    const [course, ] = useState(props)
+    const [course,] = useState(props)
     console.log("Course State:", course)
 
     return (
@@ -19,24 +19,24 @@ const Course = props => {
                 </title>
             </Head>
 
-            <CourseNav 
-                title={course.Title} 
+            <CourseNav
+                title={course.Title}
                 courseId={course.id}
-            />  
+            />
 
-            <div id="course-container">  
+            <div id="course-container">
 
                 <main>
                     <header>
                         <h1>{course.Title}</h1>
-
                         <p>{course.Description}</p>
                     </header>
 
                     <section>
                         <h2>Subject Code: {course.SubjectCode}</h2>
-                        <p>Instructor{course.Instructors && course.Instructors.length > 1 ? "s":""}: 
-                            {course.Instructors.map(Instructor => <span> {Instructor.username}</span> )}
+                        <p>Instructor{course.Instructors && course.Instructors.length > 1 ? "s" : ""}:
+                            {course.Instructors.map((Instructor, index) =>
+                            <span> {`${Instructor.FirstName} ${Instructor.LastName}`} {index < course.Instructors.length - 1 ? ", " : ""}</span>)}
                         </p>
 
                         <div className="link-grid">
