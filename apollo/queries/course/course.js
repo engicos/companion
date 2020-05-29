@@ -5,11 +5,11 @@ const COURSE_ID_QUERY = (id) => gql`
     courses(where: { id: "${id}" }) {
 	    id,
         Title,
-        Acronym,
         Description,
         SubjectCode,
-        created_at,
-        updated_at
+        Instructors {
+          username
+        }
     }
   }
 `;

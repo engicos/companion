@@ -8,6 +8,7 @@ const Course = props => {
     // course is the course ID
     // const { courseId } = router.query
     const [course, ] = useState(props)
+    console.log("Course State:", course)
 
     return (
         <Fragment>
@@ -34,7 +35,9 @@ const Course = props => {
 
                     <section>
                         <h2>Subject Code: {course.SubjectCode}</h2>
-                        <p>Instructor: Course Instructor</p>
+                        <p>Instructor{course.Instructors && course.Instructors.length > 1 ? "s":""}: 
+                            {course.Instructors.map(Instructor => <span> {Instructor.username}</span> )}
+                        </p>
 
                         <div className="link-grid">
                             <div onClick={() => router.push(`/courses/${course.id}/syllabus`)}>
