@@ -1,9 +1,13 @@
+import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 import Head from 'next/head'
+import CourseNav from './CourseNav'
 
 const Course = props => {
+    const router = useRouter()
+    // course is the course ID
+    // const { courseId } = router.query
     const [course, ] = useState(props)
-    console.log("Course state:", course)
 
     return (
         <Fragment>
@@ -14,13 +18,12 @@ const Course = props => {
                 </title>
             </Head>
 
-            <div id="course-container">
-                <nav className="course-nav">
-                    <div>{course.Title}</div>
-                    <div>
-                        <input type="text" placeholder="🔍 Search.." />
-                    </div>
-                </nav>
+            <CourseNav 
+                title={course.Title} 
+                courseId={course.id}
+            />  
+
+            <div id="course-container">  
 
                 <main>
                     <header>
@@ -34,24 +37,24 @@ const Course = props => {
                         <p>Instructor: Course Instructor</p>
 
                         <div className="link-grid">
-                            <span onClick={() => router.push(`/courses/${course}/syllabus`)}>
-                                <span className="link-grid-icon">📄</span> Syllabus
-                            </span>
-                            <span onClick={() => router.push(`/courses/${course}/assignments`)}>
-                                <span className="link-grid-icon">📌</span> Assignments
-                            </span>
-                            <span onClick={() => router.push(`/courses/${course}/schedule`)}>
-                                <span className="link-grid-icon">📅</span> Schedule
-                            </span>
-                            <span onClick={() => router.push(`/courses/${course}/sections`)}>
-                                <span className="link-grid-icon">🎒</span> Sections
-                            </span>
-                            <span onClick={() => router.push(`/courses/${course}/resources`)}>
-                                <span className="link-grid-icon">📚</span> Resources
-                            </span>
-                            <span onClick={() => router.push(`/courses/${course}/contact`)}>
-                                <span className="link-grid-icon">☎</span> Contact and Office Hours
-                            </span>
+                            <div onClick={() => router.push(`/courses/${course.id}/syllabus`)}>
+                                <div className="link-grid-icon">📄</div> Syllabus
+                            </div>
+                            <div onClick={() => router.push(`/courses/${course.id}/assignments`)}>
+                                <div className="link-grid-icon">📌</div> Assignments
+                            </div>
+                            <div onClick={() => router.push(`/courses/${course.id}/schedule`)}>
+                                <div className="link-grid-icon">📅</div> Schedule
+                            </div>
+                            <div onClick={() => router.push(`/courses/${course.id}/sections`)}>
+                                <div className="link-grid-icon">🎒</div> Sections
+                            </div>
+                            <div onClick={() => router.push(`/courses/${course.id}/resources`)}>
+                                <div className="link-grid-icon">📚</div> Resources
+                            </div>
+                            <div onClick={() => router.push(`/courses/${course.id}/contact`)}>
+                                <div className="link-grid-icon">☎</div> Contact and Office Hours
+                            </div>
                         </div>
                     </section>
 
@@ -101,18 +104,6 @@ const Course = props => {
                     background: #2f3437;
                     color: #eee;
                   
-                    .course-nav {
-                      width: 100%;
-                      display: flex;
-                      justify-content: space-between;
-                  
-                      input {
-                        border: none;
-                        padding: 0.5rem 1rem;
-                        border-radius: 0.25rem;
-                      }
-                    }
-                  
                     main {
                       width: 60%;
                       margin: 0 auto;
@@ -127,9 +118,11 @@ const Course = props => {
                         grid-template-columns: 1fr 1fr;
                         column-gap: 2rem;
                   
-                        span {
+                        div {
                           padding: 0.5rem 0.25rem;
                           user-select: none;
+                          display: flex;
+                          align-items:center;
                   
                           &:hover {
                             background: #404244;
@@ -172,6 +165,23 @@ const Course = props => {
                         padding: 1rem 2rem;
                         margin: 0.5rem 0;
                       }
+                    }
+                  }
+
+                  @media only screen and (max-width: 650px) {
+                    #course-container {
+                        main {
+                            width: 90%;
+                            section {
+                                .link-grid{
+                                    column-gap: 0.5rem;
+                                }
+
+                                .schedule-grid {
+                                    grid-template-columns: 1fr 1fr;
+                                }
+                            }
+                        }
                     }
                   }
                   
