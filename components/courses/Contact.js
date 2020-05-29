@@ -11,19 +11,8 @@ const Contact = props => {
     const [course,] = useState(props)
     // console.log("Contact state:", course)
 
-    const dummyContacts = [
-        { image: "https://via.placeholder.com/200", name: "Prof. Schrute" },
-        { image: "https://via.placeholder.com/150", name: "Dr. Mike" },
-        { image: "https://via.placeholder.com/300x200", name: "Mrs. Pam" },
-        { image: "https://via.placeholder.com/300", name: "Jim James Jimmy Halpert" },
-        { image: "https://via.placeholder.com/200x150", name: "A really really really long name" },
-        { image: "https://via.placeholder.com/400", name: "Mr. Deangelo Vickers" }
-    ]
-
-    const [contacts,] = useState(dummyContacts)
-
     const handleClick = name => {
-        alert(`You clicked on ${name}`)
+        alert(`You clicked on ${name} \nLater want this to redirect to the ${name}'s profile page`)
     }
 
     return (
@@ -50,15 +39,12 @@ const Contact = props => {
                     </header>
 
                     <section className="contact-grid">
-                        {contacts.map((contact) =>
-                            <ContactCard
-                                key={contact.name}
-                                handleClick={handleClick}
-                                image={contact.image}
-                                name={contact.name}
-                            />
-                        )}
-
+                        {course.Instructors.map(Instructor => 
+                        <ContactCard
+                            key={Instructor.username}
+                            handleClick={handleClick}
+                            {...Instructor}
+                        />)}
                     </section>
                 </main>
             </div>
@@ -83,8 +69,7 @@ const Contact = props => {
                             &.contact-grid {
                                 display: flex;
                                 flex-wrap: wrap;
-                                justify-content: center;
-
+                                justify-content: start;
                             }
                         }
                     }
@@ -94,6 +79,10 @@ const Contact = props => {
                     #contact-container {
                         main {
                             width: 90%;  
+
+                            section.contact-grid {
+                                justify-content: center;
+                            }
                         }
                     }
                   }

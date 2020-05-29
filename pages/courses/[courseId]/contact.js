@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import Query from '../../../components/query'
-import COURSE_ID_QUERY from '../../../apollo/queries/course/course'
+import ContactQuery from '../../../apollo/queries/course/Contact'
 import Contact from '../../../components/courses/Contact'
 
 
@@ -13,8 +13,7 @@ const ContactPage = () => {
     return (
         <Fragment>
 
-            {/* Need to use a different query later, data not in place yets */}
-            <Query query={COURSE_ID_QUERY(courseId)}>
+            <Query query={ContactQuery(courseId)}>
                 {({ data: { courses } }) => {
                     if (courses.length == 0)
                         return <div>Course not found</div>
