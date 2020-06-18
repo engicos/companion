@@ -19,7 +19,7 @@ export default function Home() {
         <link rel="stylesheet" href="/event.css"></link>
       </Head>
 
-      <main>
+      <div className="app">
         <Calendar dayHandler={setDay}></Calendar>
         <div className="events">
           <Query query={TODAYS_LECTURES_QUERY(currDay.format("ddd"))}>
@@ -32,7 +32,7 @@ export default function Home() {
             }}
           </Query>
         </div>
-      </main>
+      </div>
 
       <style jsx>{`
         .container {
