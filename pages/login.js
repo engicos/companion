@@ -39,7 +39,8 @@ const loginPage = () => {
                 Router.push('/temp/welcome');
             }
             else{
-                // What to do in case username/password is wrong
+                // Username-Password combo is wrong. Display error message
+                document.getElementById("password-mismatch-error").hidden = false
             }
         })
 
@@ -49,6 +50,7 @@ const loginPage = () => {
     <Fragment>
       <form>
           <h1>Login</h1>
+          <p className="error-message" id="password-mismatch-error" hidden>Username and password don't match</p>
           <p>Enter your username:</p>
           <input
             type='text'
@@ -65,6 +67,11 @@ const loginPage = () => {
             onClick={submitForm}
             />            
      </form>
+    <style jsx>{`
+        .error-message {
+            color: red
+        }
+    `}</style>
     </Fragment>
     );
 }
