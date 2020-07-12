@@ -19,9 +19,9 @@ const Assignments = props => {
                 </title>
             </Head>
 
-            <CourseNav 
-                title={course.Title} 
-                page="📌 Assignments" 
+            <CourseNav
+                title={course.Title}
+                page="📌 Assignments"
                 courseId={course.id}
             />
 
@@ -33,33 +33,34 @@ const Assignments = props => {
                     </header>
 
                     <section>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>🔤 Name</th>
-                                    <th>📆 Dates</th>
-                                    <th>📔 Topic</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>LoremName</td>
-                                    <td>LoremDate </td>
-                                    <td>LoremTopic</td>
-                                </tr>
-                                <tr>
-                                    <td>LoremName</td>
-                                    <td>June 9, 2020</td>
-                                    <td>LoremTopic</td>
-                                </tr>
-                                <tr>
-                                    <td>LoremName</td>
-                                    <td>LoremDate</td>
-                                    <td>LoremTopic lorem</td>
-                                </tr>
-                            </tbody>
-
-                        </table>                        
+                        <div className="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>🔤 Name</th>
+                                        <th>📆 Dates</th>
+                                        <th>📔 Topic</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LoremName</td>
+                                        <td>LoremDate </td>
+                                        <td>LoremTopic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LoremName</td>
+                                        <td>June 9, 2020</td>
+                                        <td>LoremTopic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LoremName</td>
+                                        <td>LoremDate</td>
+                                        <td>LoremTopic lorem</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </section>
                 </main>
             </div>
@@ -81,10 +82,16 @@ const Assignments = props => {
                         section {
                             margin: 3rem auto;
                             
+                            .table-wrapper{
+                                overflow-x: auto;
+                            }
+
                             table {                                
                                 border-collapse: collapse;
+                                min-width: 100%;
                                 th {
                                     text-align: left;
+                                    white-space: nowrap;
                                 }
 
                                 td {
