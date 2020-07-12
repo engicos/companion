@@ -46,6 +46,7 @@ const Resources = props => {
                     padding: 1rem;
                     background: #2f3437;
                     color: #eee;
+                    min-height: 100vh;
                   
                     main {
                         width: 60%;

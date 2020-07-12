@@ -24,9 +24,9 @@ const Contact = props => {
                 </title>
             </Head>
 
-            <CourseNav 
-                title={course.Title} 
-                page="☎️ Contact & Office Hours" 
+            <CourseNav
+                title={course.Title}
+                page="☎️ Contact & Office Hours"
                 courseId={course.id}
             />
 
@@ -39,12 +39,12 @@ const Contact = props => {
                     </header>
 
                     <section className="contact-grid">
-                        {course.Instructors.map(Instructor => 
-                        <ContactCard
-                            key={Instructor.username}
-                            handleClick={handleClick}
-                            {...Instructor}
-                        />)}
+                        {course.Instructors.map(Instructor =>
+                            <ContactCard
+                                key={Instructor.username}
+                                handleClick={handleClick}
+                                {...Instructor}
+                            />)}
                     </section>
                 </main>
             </div>
@@ -57,6 +57,7 @@ const Contact = props => {
                     padding: 1rem;
                     background: #2f3437;
                     color: #eee;
+                    min-height: 100vh;
                   
                     main {
                         width: 60%;

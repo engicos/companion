@@ -94,6 +94,7 @@ You can create your own categories and topics for whatever you're teaching. </p>
                     padding: 1rem;
                     background: #2f3437;
                     color: #eee;
+                    min-height: 100vh;
                   
                     main {
                         width: 60%;

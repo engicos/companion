@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import Query from '../../../components/query'
 import COURSE_ID_QUERY from '../../../apollo/queries/course/course'
 import Assignments from '../../../components/courses/Assignments'
+import Error from 'next/error'
 
 const AssignmentsPage = () => {
     const router = useRouter()
@@ -15,8 +16,8 @@ const AssignmentsPage = () => {
             <Query query={COURSE_ID_QUERY(courseId)}>
                 {({ data: { courses } }) => {
                     if (courses.length == 0)
-                        return <div>Course not found</div>
-                    return <Assignments {...courses[0]}/>
+                        return <Error statusCode={404} title={"Couldn't find that course."} />
+                    return <Assignments {...courses[0]} />
                 }}
             </Query>
 
