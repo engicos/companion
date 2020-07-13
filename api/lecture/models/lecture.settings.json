@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lectures",
+  "info": {
+    "name": "Lecture"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Start": {
+      "type": "time"
+    },
+    "End": {
+      "type": "time"
+    },
+    "subject": {
+      "via": "lectures",
+      "model": "course"
+    },
+    "Weekday": {
+      "type": "enumeration",
+      "enum": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "required": true
+    }
+  }
+}
