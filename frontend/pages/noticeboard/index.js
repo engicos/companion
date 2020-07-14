@@ -1,7 +1,7 @@
 // import Head from 'next/head'
-import Post from '../components/Post.jsx';
-import Query from "../components/query";
-import LATEST_POSTS_QUERY from "../apollo/queries/post/posts";
+import Post from '../../components/Post.jsx';
+import Query from "../../components/query";
+import LATEST_POSTS_QUERY from "../../apollo/queries/post/posts";
 
 export default function Home() {
   return (

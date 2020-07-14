@@ -2,7 +2,8 @@ import React from "react";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
 import withData from "../utils/apollo";
-import '../public/styles.css'
+import '../styles/global.scss'
+//import '../public/styles.css'
 
 const App = ({ Component, pageProps, apollo }) => {
   return (
