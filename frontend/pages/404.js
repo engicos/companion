@@ -31,41 +31,37 @@ const Custom404Page = (props) => {
           background: #2f3437;
           color: #eee;
           min-height: 100vh;
-
-          main {
-            width: 60%;
-            margin: 0 auto;
-            margin-top: 5rem;
-
-            section {
-              margin: 3rem 0;
-
-              button {
-                outline: none;
-                border: none;
-                user-select: none;
-                padding: 0.5rem 1rem;
-                background: #404244;
-                color: #eee;
-                border-radius: 0.2rem;
-
-                &:hover {
-                  background: #eee;
-                  color: #404244;
-                  cursor: pointer;
-                  transition: all 0.3s ease-in-out;
-                }
-              }
-            }
-          }
         }
 
-        @media only screen and (max-width: 650px) {
-          #error-container {
-            main {
-              width: 90%;
-            }
-          }
+        #error-container main {
+          width: 60%;
+          margin: 0 auto;
+          margin-top: 5rem;
+        }
+
+        #error-container main section {
+          margin: 3rem 0;
+        }
+
+        #error-container main section button {
+          outline: none;
+          border: none;
+          user-select: none;
+          padding: 0.5rem 1rem;
+          background: #404244;
+          color: #eee;
+          border-radius: 0.2rem;
+        }
+
+        #error-container main section button &:hover {
+          background: #eee;
+          color: #404244;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+        }
+
+        @media only screen and (max-width: 650px) #error-container main {
+          width: 90%;
         }
       `}</style>
     </Fragment>
