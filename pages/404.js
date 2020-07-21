@@ -53,15 +53,17 @@ const Custom404Page = (props) => {
           border-radius: 0.2rem;
         }
 
-        #error-container main section button &:hover {
+        #error-container main section button:hover {
           background: #eee;
           color: #404244;
           cursor: pointer;
           transition: all 0.3s ease-in-out;
         }
 
-        @media only screen and (max-width: 650px) #error-container main {
-          width: 90%;
+        @media only screen and (max-width: 650px) {
+          #error-container main {
+            width: 90%;
+          }
         }
       `}</style>
     </Fragment>
