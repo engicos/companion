@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import Query from "../../../components/query";
-import POST_QUERY from "../../../apollo/queries/post/post";
-import Post from "../../../components/Post";
+import Query from "../../components/query";
+import POST_QUERY from "../../apollo/queries/post/post";
+import Post from "../../components/noticeboard/Post";
 
 const SinglePost = () => {
   const router = useRouter();

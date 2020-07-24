@@ -1,5 +1,5 @@
 // import Head from 'next/head'
-import Post from "../../components/Post";
+import Post from "../../components/noticeboard/Post";
 import Query from "../../components/query";
 import LATEST_POSTS_QUERY from "../../apollo/queries/post/posts";
 
@@ -14,7 +14,6 @@ export default function Home() {
           });
         }}
       </Query>
-
       <style jsx>{``}</style>
     </div>
   );
