@@ -19,6 +19,10 @@ body {
   gap: 40px;
 }
 
+ul {
+  list-style: none;
+}
+
 @media only screen and (max-width: 650px) {
   .container {
     padding: 20px;
