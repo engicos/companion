@@ -4,7 +4,7 @@ import { route } from "next/dist/next-server/server/router";
 
 const Header = () => {
   const router = useRouter();
-  const links = ["articles", "courses", "lectures", "posts", "login"];
+  const links = ["articles", "courses", "lectures", "posts", "profile"];
 
   return (
     <Fragment>

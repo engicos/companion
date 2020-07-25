@@ -1,14 +1,13 @@
 import React from "react";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { CookiesProvider } from "react-cookie";
 import withData from "../utils/apollo";
 import "../styles/global.scss";
 
 import Layout from "../components/common/Layout";
 
 const App = ({ Component, pageProps, apollo }) => {
-  const [cookies, setCookie] = useCookies('user')
 
   return (
     <CookiesProvider>
@@ -22,7 +21,6 @@ const App = ({ Component, pageProps, apollo }) => {
           />
         </Head>
         <Component {...pageProps} />
-        {JSON.stringify(cookies.user)}
       </Layout>
     </ApolloProvider>
     </CookiesProvider>
