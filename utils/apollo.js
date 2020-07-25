@@ -10,6 +10,7 @@ const GRAPHQL_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
 const link = createHttpLink({
   fetch, // Switches between unfetch & node-fetch for client & server.
   uri: GRAPHQL_URL + "/graphql",
+  credentials: 'include'
 });
 
 // Export a HOC from next-with-apollo

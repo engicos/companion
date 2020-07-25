@@ -4,15 +4,15 @@ import { route } from "next/dist/next-server/server/router";
 
 const Header = () => {
   const router = useRouter();
-  const links = ["articles", "courses", "lectures", "posts"];
+  const links = ["articles", "courses", "lectures", "posts", "login"];
 
   return (
     <Fragment>
       <nav>
         <ul>
-          <li onClick={() => router.push(`/`)}>COMPANION</li>
+          <li key={"home"} onClick={() => router.push(`/`)}>COMPANION</li>
           {links.map((link) => (
-            <li onClick={() => router.push(`/${link}`)}>
+            <li key={link} onClick={() => router.push(`/${link}`)}>
               {link.toUpperCase()}
             </li>
           ))}
