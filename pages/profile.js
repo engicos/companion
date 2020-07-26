@@ -24,14 +24,11 @@ export default function loginPage() {
         password: password
       })
       .then(response => {
-        console.log("Well Done")
-        console.log(response)
-        console.log('User profile', response.data.user)
-        console.log('User token', response.data.jwt)
+        console.log("Sucessfully logged in")
         setCredentialError('')
         console.log('cookies', cookies)
-        setCookie('user', response.data.user, {path:'/', sameSite:'strict'})
-        setCookie('jwt', response.data.jwt, {path:'/', sameSite: 'true', secure: true})
+        setCookie('user', response.data.user, {path:'/', sameSite:'lax'})
+        setCookie('jwt', response.data.jwt, {path:'/', sameSite: 'strict'})
       })
       .catch(function (error) {
         if (error.response) {
@@ -53,6 +50,13 @@ export default function loginPage() {
         console.log(error.config);
       });
   }
+
+
+  const handleLogout = () => {
+    removeCookie('user')
+    removeCookie('jwt')
+  }
+
 
   if (cookies.user === undefined)
     return (
@@ -84,7 +88,7 @@ export default function loginPage() {
             <div className="designation">{cookies.user.type}</div>
           </div>
           <div className="info"></div>
-          <button onClick={() => removeCookie('user')}>Log out</button>
+          <button onClick={handleLogout}>Log out</button>
         </div>
 
         <style jsx>{`
